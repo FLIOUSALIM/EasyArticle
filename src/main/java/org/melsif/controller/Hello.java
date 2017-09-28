@@ -13,9 +13,15 @@ import org.springframework.ui.Model;
 @Controller
 public class Hello {
 
-    @RequestMapping("/greeting")
-    public String greeting(@PathVariable(value="name", required = false) String name, Model model) {
+    @RequestMapping("/admin")
+    public String admin(@PathVariable(value="name", required = false) String name, Model model) {
         model.addAttribute("name", name);
-        return "login";
+        return "admin";
+    }
+
+    @RequestMapping("/user")
+    public String user(@PathVariable(value="name", required = false) String name, Model model) {
+        model.addAttribute("name", name);
+        return "user";
     }
 }
