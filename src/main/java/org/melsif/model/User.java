@@ -1,5 +1,7 @@
 package org.melsif.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -9,8 +11,8 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminator")
-@DiscriminatorValue("utilisateur")
-public class Utilisateur {
+@DiscriminatorValue("user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +30,10 @@ public class Utilisateur {
 
     private String password;
 
-    private String[] Authorities;
+    @ManyToMany
+    private Set<Role> roles;
+
+    private boolean actif;
 
     public int getId() {
         return id;
@@ -86,11 +91,19 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String[] getAuthorities() {
-        return Authorities;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setAuthorities(String[] authorities) {
-        Authorities = authorities;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
     }
 }

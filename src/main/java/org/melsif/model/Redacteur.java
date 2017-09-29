@@ -8,5 +8,5 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("redacteur")
-public class Redacteur extends Utilisateur {
+public class Redacteur extends User {
 }
