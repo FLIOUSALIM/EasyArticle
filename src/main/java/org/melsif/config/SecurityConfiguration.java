@@ -43,10 +43,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
+                    .permitAll()
                 .and()
                 .authorizeRequests()
                     .antMatchers("/user").hasAuthority("redacteur")
                     .antMatchers("/admin").hasAuthority("administrateur")
-                    .anyRequest().permitAll();
+                    .anyRequest().authenticated();
     }
 }
