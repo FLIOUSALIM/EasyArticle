@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -14,24 +15,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 /**
- * Created by fliou on 01/10/17.
+ * Created by fliou on 06/10/17.
  */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HomeControllerTest {
+public class ArticleControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void souldReturnHomePage() throws Exception {
-
+    public void shouldReturnArticlePage() throws Exception {
         mockMvc
-                .perform(get("/home"))
+                .perform(get("/article"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("home"));
+                .andExpect(view().name("article"));
     }
-
 }

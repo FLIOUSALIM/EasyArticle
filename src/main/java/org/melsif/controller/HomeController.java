@@ -1,8 +1,11 @@
 package org.melsif.controller;
 
+import org.apache.log4j.Logger;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by fliou on 01/10/17.
@@ -11,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/home")
-    public String home() {
+    private static final Logger LOGGER =  Logger.getLogger(HomeController.class);
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        LOGGER.info(name);
+        model.addAttribute("name", name);
         return "home";
     }
 }
